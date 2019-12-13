@@ -10,6 +10,7 @@ import serg.core.services.ParticipantService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class MainController {
 

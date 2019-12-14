@@ -20,6 +20,10 @@ public class ConferenceService {
         return "conference saved";
     }
 
+    public Conference getConference (String name) {
+        return conferenceRepository.getConferenceByName(name);
+    }
+
     public List<Conference> allConferences () {
         return conferenceRepository.findAll();
     }

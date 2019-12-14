@@ -35,6 +35,11 @@ public class MainController {
         return conferenceService.addConference(conference);
     }
 
+    @GetMapping("/getConference")
+    public Conference getConference(@RequestParam String name) {
+        return conferenceService.getConference(name);
+    }
+
     @GetMapping("/allConferences")
     public List<Conference> allConferences() {
         return conferenceService.allConferences();

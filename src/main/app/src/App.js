@@ -5,6 +5,7 @@ import {Participant} from "./components/Participant";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {Navigation} from "./components/Navigation";
 import {ConfRoom} from "./components/ConfRoom";
+import {Home} from "./components/Home";
 
 function App() {
     return (
@@ -13,12 +14,14 @@ function App() {
                 <div className="row">
                     <div className="col">
                         <ul className="nav justify-content-end">
-                            <li className="nav-item"><Navigation path="/" name="Conference"/></li>
+                            <li className="nav-item"><Navigation path="/" name="Home"/></li>
+                            <li className="nav-item"><Navigation path="/conf" name="Conference"/></li>
                             <li className="nav-item"><Navigation path="/part" name="Participant"/></li>
                             <li className="nav-item"><Navigation path="/room" name="ConferenceRoom"/></li>
                         </ul>
                         <Switch>
-                            <Route path="/" component={Conference} exact/>
+                            <Route path="/" component={Home} exact/>
+                            <Route path="/conf" component={Conference}/>
                             <Route path="/part" component={Participant}/>
                             <Route path="/room" component={ConfRoom}/>
                         </Switch>

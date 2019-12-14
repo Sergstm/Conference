@@ -3,7 +3,7 @@ import axios from "axios";
 import {Modal} from "./Modal";
 
 
-export class Conference extends Component {
+export class Conferences extends Component {
     state = {
         data: []
     };
@@ -20,7 +20,7 @@ export class Conference extends Component {
         return (
             <div className="card text-center">
                 <div className="card-body">
-                    <Modal button_title="Add new conference" modal_title="Create Conference"/>
+                    <Modal button_title="Add new conference" modal_title="Create Conferences"/>
                     <table className="table">
                         <thead>
                         <tr>

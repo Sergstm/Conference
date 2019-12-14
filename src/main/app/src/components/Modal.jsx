@@ -4,7 +4,7 @@ import React from 'react';
 export const Modal = ({button_title, modal_title}) => {
     return (
         <div>
-            <button className="btn btn-secondary btn-sm btn-block" data-toggle="modal" data-target="#modal">
+            <button className="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#modal">
                 {button_title}
             </button>
 

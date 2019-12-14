@@ -3,7 +3,7 @@ import axios from "axios";
 import {Modal} from "./Modal";
 
 
-export class ConfRoom extends Component {
+export class ConfRooms extends Component {
     state = {
         data: []
     };
@@ -27,6 +27,7 @@ export class ConfRoom extends Component {
                             <th>Name</th>
                             <th>Seats</th>
                             <th>Location</th>
+                            <th>Services</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,10 @@ export class ConfRoom extends Component {
                                 <td>{el.name}</td>
                                 <td>{el.seats}</td>
                                 <td>{el.location}</td>
+                                <td>
+                                    <button className="btn btn-primary btn-sm">Edit</button>
+                                    <button className="btn btn-danger btn-sm">Del</button>
+                                </td>
                             </tr>
                         ))}
                         </tbody>

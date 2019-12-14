@@ -6,8 +6,7 @@ import {Content} from "./Content";
 export class Home extends Component {
     state = {
         data: [],
-        conf: [],
-        name: ""
+        conf: []
     };
 
     componentDidMount() {
@@ -24,7 +23,11 @@ export class Home extends Component {
 
     handleClick = (e) => {
         let value = e.target.value;
-        console.log(value);
+        axios.get("http://localhost:8080/getConference?name=" + value)
+            .then(res => {
+                // console.log(res.data);
+                this.setState({conf: res.data})
+            })
     };
 
     render() {
@@ -32,12 +35,12 @@ export class Home extends Component {
             <div className="row">
                 <div className="col-4">
                     <div className="card text-center">
+                        <div className="card-header">Available conferences</div>
                         <div className="card-body">
                             <div className="list-group">
                                 {this.state.data.map(el => (
-                                    <button className="list-group-item" data-toggle="list"
-                                            onClick={this.handleClick}
-                                            key={el.id}>{el.name}</button>
+                                    <button className="list-group-item" data-toggle="list" value={el.name}
+                                            key={el.id} onClick={this.handleClick}>{el.name}</button>
                                 ))}
                             </div>
                         </div>
@@ -46,11 +49,8 @@ export class Home extends Component {
                 <div className="col-8">
                     <div className="card text-center">
                         <div className="card-body">
-                            <div className="tab-content">
-                                <div className="tab-pane fade show active">
-                                    <Content children={}/>
-                                </div>
-                            </div>
+                            {this.state.conf.length !== 0 ?
+                                <Content conf={this.state.conf}/> : "Choose conference"}
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import {Modal} from "./Modal";
 
 
-export class Participant extends Component {
+export class Participants extends Component {
     state = {
         data: []
     };
@@ -26,6 +26,7 @@ export class Participant extends Component {
                         <tr>
                             <th>Name</th>
                             <th>BirthDate</th>
+                            <th>Services</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,6 +34,10 @@ export class Participant extends Component {
                             <tr key={el.id}>
                                 <td>{el.name}</td>
                                 <td>{el.birthDate}</td>
+                                <td>
+                                    <button className="btn btn-primary btn-sm">Edit</button>
+                                    <button className="btn btn-danger btn-sm">Del</button>
+                                </td>
                             </tr>
                         ))}
                         </tbody>

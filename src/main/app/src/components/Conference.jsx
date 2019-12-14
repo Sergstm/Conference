@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import {Modal} from "./Modal";
 
 
 export class Conference extends Component {
@@ -10,16 +11,16 @@ export class Conference extends Component {
     componentDidMount() {
         axios.get("http://localhost:8080/allConferences")
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({data: res.data})
             })
     }
-
 
     render() {
         return (
             <div className="card text-center">
                 <div className="card-body">
+                    <Modal button_title="Add new conference" modal_title="Create Conference"/>
                     <table className="table">
                         <thead>
                         <tr>

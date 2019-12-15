@@ -6,5 +6,5 @@ import serg.core.models.Conference;
 
 @Repository
 public interface ConferenceRepository extends MongoRepository<Conference, String> {
-    Conference getConferenceByName(String name);
+    Conference getConferenceById(String id);
 }

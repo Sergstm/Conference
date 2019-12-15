@@ -17,14 +17,25 @@ public class ConferenceService {
 
     public String addConference (Conference conference) {
         conferenceRepository.save(conference);
-        return "conference saved";
+        return "Conference saved";
     }
 
-    public Conference getConference (String name) {
-        return conferenceRepository.getConferenceByName(name);
+    public Conference getConference (String id) {
+        return conferenceRepository.getConferenceById(id);
     }
 
     public List<Conference> allConferences () {
         return conferenceRepository.findAll();
+    }
+
+    public String putConference (Conference conference) {
+        Conference conf = getConference(conference.getId());
+        conferenceRepository.save(conference);
+        return "Conference " + conf.getId() + " updated";
+    }
+
+    public String delConference (String id) {
+        conferenceRepository.deleteById(id);
+        return "Conference " + id + " deleted";
     }
 }

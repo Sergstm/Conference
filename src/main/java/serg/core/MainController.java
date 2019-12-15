@@ -30,14 +30,15 @@ public class MainController {
         return "index";
     }
 
+//    Conference
     @PostMapping("/addConference")
     public String addConference(@RequestBody Conference conference) {
         return conferenceService.addConference(conference);
     }
 
     @GetMapping("/getConference")
-    public Conference getConference(@RequestParam String name) {
-        return conferenceService.getConference(name);
+    public Conference getConference(@RequestParam String id) {
+        return conferenceService.getConference(id);
     }
 
     @GetMapping("/allConferences")
@@ -45,6 +46,17 @@ public class MainController {
         return conferenceService.allConferences();
     }
 
+    @PutMapping("/putConference")
+    public String putConference(@RequestBody Conference conference) {
+        return conferenceService.putConference(conference);
+    }
+
+    @DeleteMapping("/delConference")
+    public String delConference(@RequestParam String id) {
+        return conferenceService.delConference(id);
+    }
+
+//    ConfRoom
     @PostMapping("/addConfRoom")
     public String addConfRoom(@RequestBody ConfRoom confRoom) {
         return confRoomService.addConfRoom(confRoom);
@@ -55,6 +67,8 @@ public class MainController {
         return confRoomService.allConfRooms();
     }
 
+
+//    Participant
     @PostMapping("/addParticipant")
     public String addParticipant(@RequestBody Participant participant) {
         return participantService.addParticipant(participant);

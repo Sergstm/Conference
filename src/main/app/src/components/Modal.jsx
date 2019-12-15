@@ -1,4 +1,5 @@
 import React from 'react';
+import {Conference} from "./Conference";
 
 
 export const Modal = ({button_title, modal_title}) => {
@@ -15,13 +16,13 @@ export const Modal = ({button_title, modal_title}) => {
                             <h5 className="modal-title">{modal_title}</h5>
                         </div>
                         <div className="modal-body">
-                            <p>Modal body text goes here.</p>
+                            <Conference/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">
                                 Close
                             </button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </div>

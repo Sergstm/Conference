@@ -1,51 +1,37 @@
-import React, {Component} from 'react';
-import axios from "axios";
-import {Modal} from "./Modal";
+import React from 'react';
 
 
-export class Conference extends Component {
-    state = {
-        data: []
-    };
-
-    componentDidMount() {
-        axios.get("http://localhost:8080/allConferences")
-            .then(res => {
-                // console.log(res.data);
-                this.setState({data: res.data})
-            })
-    }
-
-    render() {
-        return (
-            <div className="card text-center">
-                <div className="card-body">
-                    <Modal button_title="Add new conference" modal_title="Create Conference"/>
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Seats</th>
-                            <th>DateTime</th>
-                            <th>Services</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.data.map(el => (
-                            <tr key={el.id}>
-                                <td>{el.name}</td>
-                                <td>{el.seats}</td>
-                                <td>{el.dateTime}</td>
-                                <td>
-                                    <button className="btn btn-primary btn-sm">Edit</button>
-                                    <button className="btn btn-danger btn-sm">Del</button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
+export const Conference = () => {
+    return (
+        <div>
+            Conference name
+            <div className="input-group input-group-sm mb-1">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Name</span>
                 </div>
+                <input type="text" className="form-control" maxLength="150" name="name"/>
             </div>
-        )
-    }
-}
+            Quantity of seats
+            <div className="input-group input-group-sm mb-1">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Seats</span>
+                </div>
+                <input type="number" className="form-control" name="seats"/>
+            </div>
+            Conference date
+            <div className="input-group input-group-sm mb-1">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Date</span>
+                </div>
+                <input type="date" className="form-control" name="date"/>
+            </div>
+            Conference time
+            <div className="input-group input-group-sm mb-1">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Time</span>
+                </div>
+                <input type="time" className="form-control" name="time"/>
+            </div>
+        </div>
+    )
+};

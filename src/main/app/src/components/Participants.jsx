@@ -53,7 +53,7 @@ export class Participants extends Component {
             birthDate: birthDate
         };
 
-        axios.post("http://localhost:8080/addparticipant", participant)
+        axios.post("http://localhost:8080/addParticipant", participant)
             .then(res => {
                 // console.log(res.data);
                 this.setState({status: res.data});
@@ -79,7 +79,8 @@ export class Participants extends Component {
                                         <div className="input-group-prepend">
                                             <span className="input-group-text">Name</span>
                                         </div>
-                                        <input type="text" className="form-control" maxLength="150" name="name"/>
+                                        <input type="text" className="form-control" maxLength="150"
+                                               name="name"/>
                                     </div>
                                     Participant birth date
                                     <div className="input-group input-group-sm mb-1">
@@ -90,9 +91,10 @@ export class Participants extends Component {
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    {(this.state.status !== "Conference saved") ?
+                                    {(this.state.status !== "saved") ?
                                         <button className="btn btn-primary btn-block">Save</button> :
-                                        <button className="btn btn-success btn-block">Participant saved</button>}
+                                        <button className="btn btn-success btn-block">
+                                            Participant saved</button>}
                                     <button type="button" className="btn btn-secondary"
                                             onClick={this.closeModal}>Close
                                     </button>

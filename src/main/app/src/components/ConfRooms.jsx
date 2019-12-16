@@ -23,7 +23,7 @@ export class ConfRooms extends Component {
 
     handleDelete = (e) => {
         let id = e.target.value;
-        axios.delete("http://localhost:8080/delConfRoom=" + id)
+        axios.delete("http://localhost:8080/delConfRoom?id=" + id)
             .then(res => {
                 this.setState({status: res.data});
                 this.getData();
@@ -81,7 +81,8 @@ export class ConfRooms extends Component {
                                         <div className="input-group-prepend">
                                             <span className="input-group-text">Name</span>
                                         </div>
-                                        <input type="text" className="form-control" maxLength="150" name="name"/>
+                                        <input type="text" className="form-control" maxLength="150"
+                                               name="name"/>
                                     </div>
                                     Quantity of seats
                                     <div className="input-group input-group-sm mb-1">
@@ -99,7 +100,7 @@ export class ConfRooms extends Component {
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    {(this.state.status !== "Conference saved") ?
+                                    {(this.state.status !== "saved") ?
                                         <button className="btn btn-primary btn-block">Save</button> :
                                         <button className="btn btn-success btn-block">
                                             Conference room saved</button>}

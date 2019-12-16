@@ -10,20 +10,16 @@ export class Home extends Component {
     };
 
     componentDidMount() {
-        this.getData("allConferences");
-    }
-
-    getData = (path) => {
-        axios.get("http://localhost:8080/" + path)
+        axios.get("http://localhost:8080/allConferences")
             .then(res => {
                 // console.log(res.data);
                 this.setState({data: res.data})
             })
-    };
+    }
 
     handleClick = (e) => {
         let value = e.target.value;
-        axios.get("http://localhost:8080/getConference?name=" + value)
+        axios.get("http://localhost:8080/getConference?id=" + value)
             .then(res => {
                 // console.log(res.data);
                 this.setState({conf: res.data})
@@ -39,7 +35,7 @@ export class Home extends Component {
                         <div className="card-body">
                             <div className="list-group">
                                 {this.state.data.map(el => (
-                                    <button className="list-group-item" data-toggle="list" value={el.name}
+                                    <button className="list-group-item" data-toggle="list" value={el.id}
                                             key={el.id} onClick={this.handleClick}>{el.name}</button>
                                 ))}
                             </div>

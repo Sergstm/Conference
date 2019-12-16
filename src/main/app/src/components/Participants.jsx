@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Modal} from "./Modal";
+import {ModalWin} from "./ModalWin";
 
 
 export class Participants extends Component {
@@ -20,7 +20,7 @@ export class Participants extends Component {
         return (
             <div className="card text-center">
                 <div className="card-body">
-                    <Modal button_title="Add new participant" modal_title="Create participant"/>
+                    <ModalWin button_title="Add new participant" modal_title="Create participant"/>
                     <table className="table">
                         <thead>
                         <tr>

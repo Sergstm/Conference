@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Modal} from "./Modal";
+import {ModalWin} from "./ModalWin";
 
 
 export class ConfRooms extends Component {
@@ -20,7 +20,7 @@ export class ConfRooms extends Component {
         return (
             <div className="card text-center">
                 <div className="card-body">
-                    <Modal button_title="Add new conference room" modal_title="Create conference room"/>
+                    <ModalWin button_title="Add new conference room" modal_title="Create conference room"/>
                     <table className="table">
                         <thead>
                         <tr>

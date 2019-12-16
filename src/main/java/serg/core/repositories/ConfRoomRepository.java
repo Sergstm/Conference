@@ -6,4 +6,5 @@ import serg.core.models.ConfRoom;
 
 @Repository
 public interface ConfRoomRepository extends MongoRepository<ConfRoom, String> {
+    ConfRoom getConfRoomById(String id);
 }

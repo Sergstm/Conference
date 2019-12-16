@@ -36,14 +36,14 @@ public class MainController {
         return conferenceService.addConference(conference);
     }
 
-    @GetMapping("/getConference")
-    public Conference getConference(@RequestParam String id) {
-        return conferenceService.getConference(id);
-    }
-
     @GetMapping("/allConferences")
     public List<Conference> allConferences() {
         return conferenceService.allConferences();
+    }
+
+    @GetMapping("/getConference")
+    public Conference getConference(@RequestParam String id) {
+        return conferenceService.getConference(id);
     }
 
     @PutMapping("/putConference")
@@ -67,6 +67,20 @@ public class MainController {
         return confRoomService.allConfRooms();
     }
 
+    @GetMapping("/getConfRoom")
+    public ConfRoom getConfRoom(@RequestParam String id) {
+        return confRoomService.getConfRoom(id);
+    }
+
+    @PutMapping("/putConfRoom")
+    public String putConfRoom(@RequestBody ConfRoom confRoom) {
+        return confRoomService.putConfRoom(confRoom);
+    }
+
+    @DeleteMapping("/delConfRoom")
+    public String delConfRoom(@RequestParam String id) {
+        return confRoomService.delConfRoom(id);
+    }
 
 //    Participant
     @PostMapping("/addParticipant")
@@ -77,5 +91,20 @@ public class MainController {
     @GetMapping("/allParticipants")
     public List<Participant> allParticipants() {
         return participantService.allParticipants();
+    }
+
+    @GetMapping("/getParticipant")
+    public Participant getParticipant(@RequestParam String id) {
+        return participantService.getParticipant(id);
+    }
+
+    @PutMapping("/putParticipant")
+    public String putParticipant(@RequestBody Participant participant) {
+        return participantService.putParticipant(participant);
+    }
+
+    @DeleteMapping("/delParticipant")
+    public String delParticipant(@RequestParam String id) {
+        return participantService.delParticipant(id);
     }
 }

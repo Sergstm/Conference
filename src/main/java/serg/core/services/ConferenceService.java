@@ -17,15 +17,15 @@ public class ConferenceService {
 
     public String addConference (Conference conference) {
         conferenceRepository.save(conference);
-        return "Conference saved";
-    }
-
-    public Conference getConference (String id) {
-        return conferenceRepository.getConferenceById(id);
+        return "saved";
     }
 
     public List<Conference> allConferences () {
         return conferenceRepository.findAll();
+    }
+
+    public Conference getConference (String id) {
+        return conferenceRepository.getConferenceById(id);
     }
 
     public String putConference (Conference conference) {

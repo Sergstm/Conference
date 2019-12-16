@@ -17,10 +17,25 @@ public class ConfRoomService {
 
     public String addConfRoom(ConfRoom confRoom) {
         confRoomRepository.save(confRoom);
-        return "conference room saved";
+        return "saved";
     }
 
     public List<ConfRoom> allConfRooms() {
         return confRoomRepository.findAll();
+    }
+
+    public ConfRoom getConfRoom (String id) {
+        return confRoomRepository.getConfRoomById(id);
+    }
+
+    public String putConfRoom (ConfRoom confRoom) {
+        ConfRoom confR = getConfRoom(confRoom.getId());
+        confRoomRepository.save(confR);
+        return "Conference room " + confR.getId() + " updated";
+    }
+
+    public String delConfRoom (String id) {
+        confRoomRepository.deleteById(id);
+        return "Conference room " + id + " deleted";
     }
 }

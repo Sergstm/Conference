@@ -6,4 +6,5 @@ import serg.core.models.Participant;
 
 @Repository
 public interface ParticipantRepository extends MongoRepository<Participant, String> {
+    Participant getParticipantById(String id);
 }

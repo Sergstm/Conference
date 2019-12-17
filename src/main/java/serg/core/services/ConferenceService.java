@@ -1,6 +1,7 @@
 package serg.core.services;
 
 import org.springframework.stereotype.Service;
+import serg.core.models.ConfRoom;
 import serg.core.models.Conference;
 import serg.core.models.Participant;
 import serg.core.repositories.ConferenceRepository;
@@ -35,12 +36,20 @@ public class ConferenceService {
         return "Conference " + conf.getId() + " updated";
     }
 
+    public String addRoomToConf(ConfRoom confRoom, String confId) {
+        Conference conf = getConference(confId);
+        List<ConfRoom> rooms = conf.getConfRooms();
+        rooms.add(confRoom);
+        conferenceRepository.save(conf);
+        return "Conference " + conf.getId() + " added ConfRoom";
+    }
+
     public String addPartToConf(Participant participant, String confId) {
         Conference conf = getConference(confId);
         List<Participant> participants = conf.getParticipants();
         participants.add(participant);
         conferenceRepository.save(conf);
-        return "Conference " + conf.getId() + " updated";
+        return "Conference " + conf.getId() + " added Participant";
     }
 
     public String delConference(String id) {

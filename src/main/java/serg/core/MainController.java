@@ -51,6 +51,11 @@ public class MainController {
         return conferenceService.putConference(conference);
     }
 
+    @PutMapping("/addRoomToConf")
+    public String addRoomToConf(@RequestBody ConfRoom confRoom, @RequestParam String id) {
+        return conferenceService.addRoomToConf(confRoom, id);
+    }
+
     @PutMapping("/addPartToConf")
     public String addPartToConf(@RequestBody Participant participant, @RequestParam String id) {
         return conferenceService.addPartToConf(participant, id);

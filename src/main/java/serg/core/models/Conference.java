@@ -13,11 +13,19 @@ public class Conference {
     @Id
     private String id;
     private String name;
-    private int seats;
     private LocalDateTime dateTime;
+    private List<ConfRoom> confRooms = new ArrayList<>();
     private List<Participant> participants = new ArrayList<>();
 
     public Conference() {
+    }
+
+    public Conference(String name, LocalDateTime dateTime,
+                      List<ConfRoom> confRooms, List<Participant> participants) {
+        this.name = name;
+        this.dateTime = dateTime;
+        this.confRooms = confRooms;
+        this.participants = participants;
     }
 
     public String getId() {
@@ -36,20 +44,20 @@ public class Conference {
         this.name = name;
     }
 
-    public int getSeats() {
-        return seats;
-    }
-
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
-
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public List<ConfRoom> getConfRooms() {
+        return confRooms;
+    }
+
+    public void setConfRooms(List<ConfRoom> confRooms) {
+        this.confRooms = confRooms;
     }
 
     public List<Participant> getParticipants() {
@@ -65,8 +73,8 @@ public class Conference {
         return "Conference{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", seats=" + seats +
                 ", dateTime=" + dateTime +
+                ", confRooms=" + confRooms +
                 ", participants=" + participants +
                 '}';
     }

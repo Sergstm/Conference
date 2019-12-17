@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "conferences")
 public class Conference {
@@ -13,11 +15,9 @@ public class Conference {
     private String name;
     private int seats;
     private LocalDateTime dateTime;
+    private List<Participant> participants = new ArrayList<>();
 
-    public Conference(String name, int seats, LocalDateTime dateTime) {
-        this.name = name;
-        this.seats = seats;
-        this.dateTime = dateTime;
+    public Conference() {
     }
 
     public String getId() {
@@ -52,6 +52,14 @@ public class Conference {
         this.dateTime = dateTime;
     }
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
     @Override
     public String toString() {
         return "Conference{" +
@@ -59,6 +67,7 @@ public class Conference {
                 ", name='" + name + '\'' +
                 ", seats=" + seats +
                 ", dateTime=" + dateTime +
+                ", participants=" + participants +
                 '}';
     }
 }

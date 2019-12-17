@@ -13,6 +13,9 @@ public class Participant {
     private String name;
     private LocalDate birthDate;
 
+    public Participant() {
+    }
+
     public Participant(String name, LocalDate birthDate) {
         this.name = name;
         this.birthDate = birthDate;

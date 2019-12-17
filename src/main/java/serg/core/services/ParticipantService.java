@@ -16,26 +16,26 @@ public class ParticipantService {
         this.participantRepository = participantRepository;
     }
 
-    public String addParticipant (Participant participant) {
+    public String addParticipant(Participant participant) {
         participantRepository.save(participant);
         return "saved";
     }
 
-    public List<Participant> allParticipants () {
+    public List<Participant> allParticipants() {
         return participantRepository.findAll();
     }
 
-    public Participant getParticipant (String id) {
+    public Participant getParticipant(String id) {
         return participantRepository.getParticipantById(id);
     }
 
-    public String putParticipant (Participant participant) {
+    public String putParticipant(Participant participant) {
         Participant part = getParticipant(participant.getId());
         participantRepository.save(part);
         return "Participant " + part.getId() + " updated";
     }
 
-    public String delParticipant (String id) {
+    public String delParticipant(String id) {
         participantRepository.deleteById(id);
         return "Participant " + id + " deleted";
     }

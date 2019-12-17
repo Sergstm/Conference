@@ -12,6 +12,9 @@ public class ConfRoom {
     private String location;
     private int seats;
 
+    public ConfRoom() {
+    }
+
     public ConfRoom(String name, String location, int seats) {
         this.name = name;
         this.location = location;

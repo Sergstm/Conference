@@ -25,12 +25,12 @@ public class MainController {
         this.participantService = participantService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/api")
     public String index() {
         return "index";
     }
 
-//    Conference
+    //    Conference
     @PostMapping("/addConference")
     public String addConference(@RequestBody Conference conference) {
         return conferenceService.addConference(conference);
@@ -51,12 +51,17 @@ public class MainController {
         return conferenceService.putConference(conference);
     }
 
+    @PutMapping("/addPartToConf")
+    public String addPartToConf(@RequestBody Participant participant, @RequestParam String id) {
+        return conferenceService.addPartToConf(participant, id);
+    }
+
     @DeleteMapping("/delConference")
     public String delConference(@RequestParam String id) {
         return conferenceService.delConference(id);
     }
 
-//    ConfRoom
+    //    ConfRoom
     @PostMapping("/addConfRoom")
     public String addConfRoom(@RequestBody ConfRoom confRoom) {
         return confRoomService.addConfRoom(confRoom);
@@ -82,7 +87,7 @@ public class MainController {
         return confRoomService.delConfRoom(id);
     }
 
-//    Participant
+    //    Participant
     @PostMapping("/addParticipant")
     public String addParticipant(@RequestBody Participant participant) {
         return participantService.addParticipant(participant);

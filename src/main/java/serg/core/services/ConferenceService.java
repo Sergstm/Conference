@@ -7,6 +7,7 @@ import serg.core.models.Participant;
 import serg.core.repositories.ConferenceRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ConferenceService {
@@ -33,7 +34,7 @@ public class ConferenceService {
     public String putConference(Conference conference) {
         Conference conf = getConference(conference.getId());
         conferenceRepository.save(conference);
-        return "Conference " + conf.getId() + " updated";
+        return "saved";
     }
 
     public String addRoomToConf(ConfRoom confRoom, String confId) {
@@ -41,7 +42,7 @@ public class ConferenceService {
         List<ConfRoom> rooms = conf.getConfRooms();
         rooms.add(confRoom);
         conferenceRepository.save(conf);
-        return "Conference " + conf.getId() + " added ConfRoom";
+        return "saved";
     }
 
     public String addPartToConf(Participant participant, String confId) {
@@ -49,11 +50,31 @@ public class ConferenceService {
         List<Participant> participants = conf.getParticipants();
         participants.add(participant);
         conferenceRepository.save(conf);
-        return "Conference " + conf.getId() + " added Participant";
+        return "saved";
+    }
+
+    public String delRoomFromConf(String roomId, String confId) {
+        Conference conf = getConference(confId);
+        List<ConfRoom> rooms = conf.getConfRooms();
+        List<ConfRoom> collect = rooms.stream()
+                .filter(r -> !r.getId().contains(roomId)).collect(Collectors.toList());
+        conf.setConfRooms(collect);
+        conferenceRepository.save(conf);
+        return "saved";
+    }
+
+    public String delPartFromConf(String partId, String confId) {
+        Conference conf = getConference(confId);
+        List<Participant> parts = conf.getParticipants();
+        List<Participant> collect = parts.stream()
+                .filter(p -> !p.getId().contains(partId)).collect(Collectors.toList());
+        conf.setParticipants(collect);
+        conferenceRepository.save(conf);
+        return "saved";
     }
 
     public String delConference(String id) {
         conferenceRepository.deleteById(id);
-        return "Conference " + id + " deleted";
+        return "saved";
     }
 }

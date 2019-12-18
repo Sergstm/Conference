@@ -61,6 +61,16 @@ public class MainController {
         return conferenceService.addPartToConf(participant, id);
     }
 
+    @DeleteMapping("/delRoomFromConf")
+    public String delRoomFromConf(@RequestParam String roomId, String confId) {
+        return conferenceService.delRoomFromConf(roomId,confId);
+    }
+
+    @DeleteMapping("/delPartFromConf")
+    public String delPartFromConf(@RequestParam String partId, String confId) {
+        return conferenceService.delPartFromConf(partId, confId);
+    }
+
     @DeleteMapping("/delConference")
     public String delConference(@RequestParam String id) {
         return conferenceService.delConference(id);

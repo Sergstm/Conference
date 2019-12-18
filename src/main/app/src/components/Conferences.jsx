@@ -5,30 +5,17 @@ import Modal from "react-responsive-modal";
 
 export class Conferences extends Component {
     state = {
-        data: [],
+        confs: [],
+        rooms: [],
+        room: [],
         status: "",
         modalIsOpen: false
     };
 
     componentDidMount() {
-        this.getData();
+        this.getConferences();
+        this.getConfRooms();
     }
-
-    getData = () => {
-        axios.get("http://localhost:8080/allConferences")
-            .then(res => {
-                this.setState({data: res.data});
-            })
-    };
-
-    handleDelete = (e) => {
-        let id = e.target.value;
-        axios.delete("http://localhost:8080/delConference?id=" + id)
-            .then(res => {
-                this.setState({status: res.data});
-                this.getData();
-            });
-    };
 
     openModal = () => {
         this.setState({modalIsOpen: true,});
@@ -39,27 +26,60 @@ export class Conferences extends Component {
             modalIsOpen: false,
             status: ""
         });
-        this.getData();
+        this.getConferences();
+    };
+
+    getConferences = () => {
+        axios.get("http://localhost:8080/allConferences")
+            .then(res => {
+                // console.log(res.data);
+                this.setState({confs: res.data});
+            })
+    };
+
+    getConfRooms = () => {
+        axios.get("http://localhost:8080/allConfRooms")
+            .then(res => {
+                // console.log(res.data);
+                this.setState({rooms: res.data});
+            })
+    };
+
+    getConfRoom = (val) => {
+        axios.get("http://localhost:8080/getConfRoom?id=" + val)
+            .then(res => {
+                // console.log(res.data);
+                this.setState({room: res.data})
+            })
+    };
+
+    handleDelete = (e) => {
+        let id = e.target.value;
+        axios.delete("http://localhost:8080/delConference?id=" + id)
+            .then(res => {
+                this.setState({status: res.data});
+                this.getConferences();
+            });
+    };
+
+    handleRoomSelectChange = (e) => {
+        this.getConfRoom(e.target.value);
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let name = e.target.name.value;
-        let seats = e.target.seats.value;
-        let dateTime = e.target.dateTime.value;
-        // console.log(name);
 
         const conference = {
-            name: name,
-            seats: seats,
-            dateTime: dateTime
+            name: e.target.name.value,
+            confRooms: [this.state.room],
+            dateTime: e.target.dateTime.value
         };
 
         axios.post("http://localhost:8080/addConference", conference)
             .then(res => {
                 // console.log(res.data);
                 this.setState({status: res.data});
-            })
+            });
     };
 
     render() {
@@ -84,12 +104,18 @@ export class Conferences extends Component {
                                         <input type="text" className="form-control"
                                                maxLength="150" name="name"/>
                                     </div>
-                                    Quantity of seats
+                                    Rooms
                                     <div className="input-group input-group-sm mb-1">
                                         <div className="input-group-prepend">
-                                            <span className="input-group-text">Seats</span>
+                                            <span className="input-group-text">Rooms</span>
                                         </div>
-                                        <input type="number" className="form-control" name="seats"/>
+                                        <select className="form-control custom-select" name="room"
+                                                onChange={this.handleRoomSelectChange}>
+                                            <option value="0">Select conference room</option>
+                                            {this.state.rooms ? this.state.rooms.map(r => (
+                                                <option key={r.id} value={r.id}>{r.name}</option>)) : ""
+                                            }
+                                        </select>
                                     </div>
                                     Conference date time
                                     <div className="input-group input-group-sm mb-1">
@@ -116,17 +142,20 @@ export class Conferences extends Component {
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Seats</th>
                             <th>DateTime</th>
+                            <th>ConfRooms</th>
+                            <th>Participants</th>
                             <th>Service</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.data.map(el => (
+                        {this.state.confs.map(el => (
                             <tr key={el.id}>
                                 <td>{el.name}</td>
-                                <td>{el.seats}</td>
                                 <td>{el.dateTime}</td>
+                                <td>{el.confRooms.map(c => (<div key={c.id}>{c.name}</div>))}</td>
+                                <td>{el.participants.map(p => (<div key={p.id}>{p.name}</div>))}
+                                </td>
                                 <td>
                                     <button className="btn btn-danger btn-sm"
                                             onClick={this.handleDelete} value={el.id}>Delete

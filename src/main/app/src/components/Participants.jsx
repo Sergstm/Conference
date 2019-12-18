@@ -15,7 +15,7 @@ export class Participants extends Component {
     }
 
     getData = () => {
-        axios.get("http://localhost:8080/allParticipants")
+        axios.get("/allParticipants")
             .then(res => {
                 this.setState({data: res.data});
             })
@@ -23,7 +23,7 @@ export class Participants extends Component {
 
     handleDelete = (e) => {
         let id = e.target.value;
-        axios.delete("http://localhost:8080/delParticipant?id=" + id)
+        axios.delete("/delParticipant?id=" + id)
             .then(res => {
                 this.setState({status: res.data});
                 this.getData();
@@ -53,7 +53,7 @@ export class Participants extends Component {
             birthDate: birthDate
         };
 
-        axios.post("http://localhost:8080/addParticipant", participant)
+        axios.post("/addParticipant", participant)
             .then(res => {
                 // console.log(res.data);
                 this.setState({status: res.data});

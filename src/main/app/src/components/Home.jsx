@@ -33,7 +33,7 @@ export class Home extends Component {
     };
 
     getConferences = () => {
-        axios.get("http://localhost:8080/allConferences")
+        axios.get("/allConferences")
             .then(res => {
                 // console.log(res.data);
                 this.setState({confs: res.data});
@@ -41,7 +41,7 @@ export class Home extends Component {
     };
 
     getParticipants = () => {
-        axios.get("http://localhost:8080/allParticipants")
+        axios.get("/allParticipants")
             .then(res => {
                 // console.log(res.data);
                 this.setState({parts: res.data});
@@ -49,7 +49,7 @@ export class Home extends Component {
     };
 
     getParticipant = (val) => {
-        axios.get("http://localhost:8080/getParticipant?id=" + val)
+        axios.get("/getParticipant?id=" + val)
             .then(res => {
                 // console.log(res.data);
                 this.setState({part: res.data})
@@ -57,7 +57,7 @@ export class Home extends Component {
     };
 
     getConference = (value) => {
-        axios.get("http://localhost:8080/getConference?id=" + value)
+        axios.get("/getConference?id=" + value)
             .then(res => {
                 // console.log(res.data);
                 this.setState({
@@ -80,7 +80,7 @@ export class Home extends Component {
     handlePartDelete = (e) => {
         let partId = e.target.value;
         let confId = this.state.conf_id;
-        axios.delete("http://localhost:8080/delPartFromConf?partId=" + partId + "&confId=" + confId)
+        axios.delete("/delPartFromConf?partId=" + partId + "&confId=" + confId)
             .then(res => {
                 this.setState({status: res.data});
                 this.getConference(this.state.conf_id);
@@ -91,7 +91,7 @@ export class Home extends Component {
         e.preventDefault();
 
         if (this.state.part) {
-            axios.put("http://localhost:8080/addPartToConf?id=" + this.state.conf_id, this.state.part)
+            axios.put("/addPartToConf?id=" + this.state.conf_id, this.state.part)
                 .then(res => {
                     // console.log(res.data);
                     this.setState({status: res.data});

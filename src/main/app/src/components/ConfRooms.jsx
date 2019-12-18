@@ -15,7 +15,7 @@ export class ConfRooms extends Component {
     }
 
     getData = () => {
-        axios.get("http://localhost:8080/allConfRooms")
+        axios.get("/allConfRooms")
             .then(res => {
                 this.setState({data: res.data});
             })
@@ -23,7 +23,7 @@ export class ConfRooms extends Component {
 
     handleDelete = (e) => {
         let id = e.target.value;
-        axios.delete("http://localhost:8080/delConfRoom?id=" + id)
+        axios.delete("/delConfRoom?id=" + id)
             .then(res => {
                 this.setState({status: res.data});
                 this.getData();
@@ -55,7 +55,7 @@ export class ConfRooms extends Component {
             seats: seats
         };
 
-        axios.post("http://localhost:8080/addConfRoom", conf_room)
+        axios.post("/addConfRoom", conf_room)
             .then(res => {
                 // console.log(res.data);
                 this.setState({status: res.data});

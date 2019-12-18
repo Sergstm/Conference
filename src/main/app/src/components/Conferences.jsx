@@ -30,7 +30,7 @@ export class Conferences extends Component {
     };
 
     getConferences = () => {
-        axios.get("http://localhost:8080/allConferences")
+        axios.get("/allConferences")
             .then(res => {
                 // console.log(res.data);
                 this.setState({confs: res.data});
@@ -38,7 +38,7 @@ export class Conferences extends Component {
     };
 
     getConfRooms = () => {
-        axios.get("http://localhost:8080/allConfRooms")
+        axios.get("/allConfRooms")
             .then(res => {
                 // console.log(res.data);
                 this.setState({rooms: res.data});
@@ -46,7 +46,7 @@ export class Conferences extends Component {
     };
 
     getConfRoom = (val) => {
-        axios.get("http://localhost:8080/getConfRoom?id=" + val)
+        axios.get("/getConfRoom?id=" + val)
             .then(res => {
                 // console.log(res.data);
                 this.setState({room: res.data})
@@ -55,7 +55,7 @@ export class Conferences extends Component {
 
     handleDelete = (e) => {
         let id = e.target.value;
-        axios.delete("http://localhost:8080/delConference?id=" + id)
+        axios.delete("/delConference?id=" + id)
             .then(res => {
                 this.setState({status: res.data});
                 this.getConferences();
@@ -75,7 +75,7 @@ export class Conferences extends Component {
             dateTime: e.target.dateTime.value
         };
 
-        axios.post("http://localhost:8080/addConference", conference)
+        axios.post("/addConference", conference)
             .then(res => {
                 // console.log(res.data);
                 this.setState({status: res.data});
